@@ -1,0 +1,49 @@
+{
+  "name": "pimatic-mqtt-publish",
+  "description": "MQTT publish support for Pimatic",
+  "author_name": "Bert Gierveld",
+  "author": "Bert Gierveld",
+  "author_url": "https://github.com/bertreb",
+  "npmUser": "bertreb",
+  "main": "mqtt-publish",
+  "files": [
+    "mqtt-publish.coffee",
+    "mqtt-publish-config-schema.coffee",
+    "device-config-schema.coffee",
+    "README.md",
+    "LICENSE"
+  ],
+  "version": "0.0.1",
+  "homepage": "http://github.com/bertreb/pimatic-mqtt-publish",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bertreb/pimatic-mqtt-publish.git"
+  },
+  "configSchema": "mqtt-publish-config-schema.coffee",
+  "peerDependencies": {
+    "pimatic": ">=0.9.0 <1.0.0"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">= 4",
+    "npm": ">= 2"
+  },
+  "bugs": {
+    "url": "https://github.com/bertreb/pimatic-mqtt-publish/issues"
+  },
+  "keywords": [
+    "pimatic",
+    "mqtt",
+    "subscribe",
+    "publish",
+    "publish/subscribe",
+    "IoT"
+  ],
+  "license": "AGPL-3.0",
+  "maintainers": [
+    {
+      "name": "bertreb",
+      "url": "https://github.com/bertreb"
+    }
+  ]
+}
