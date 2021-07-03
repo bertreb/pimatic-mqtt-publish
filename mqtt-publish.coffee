@@ -33,6 +33,7 @@ module.exports = (env) ->
       @name = @config.name
       @topic = @config.topic
       @message = {}
+      @pirOn = false
 
       @mqttClient = @mqttPlugin.brokers[@config.brokerId].client
       if @mqttClient?
@@ -104,7 +105,7 @@ module.exports = (env) ->
 
       @mqttClient.on 'message', @mqttMessageHandler = (topic, message) =>
         env.logger.debug "Message received, topic: " + topic + ", message: " + message
-        if @topic + "/pir" is topic
+        if topic.indexOf(@topic + "/pir") >= 0
           if Boolean message
             @pirOn = true
             @updater()
