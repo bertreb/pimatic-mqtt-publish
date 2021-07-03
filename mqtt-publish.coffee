@@ -32,6 +32,7 @@ module.exports = (env) ->
       @id = @config.id
       @name = @config.name
       @topic = @config.topic
+      @message = {}
 
       @mqttClient = @mqttPlugin.brokers[@config.brokerId].client
       if @mqttClient?
@@ -44,7 +45,6 @@ module.exports = (env) ->
       else
         env.logger.debug "Mqtt broker client does not excist"
 
-      @message = {}
 
       ###
       for variable in @config.variables
