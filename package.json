@@ -13,7 +13,7 @@
     "README.md",
     "LICENSE"
   ],
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "http://github.com/bertreb/pimatic-mqtt-publish",
   "repository": {
     "type": "git",

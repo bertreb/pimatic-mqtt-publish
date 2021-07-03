@@ -94,16 +94,23 @@ module.exports = (env) ->
         if _var?
           @message[_var.name] = Number value
 
-
-      @mqttClient.on 'message', @mqttMessageHandler = (topic, message) =>
-        env.logger.debug "Message received, topic: " + topic + ", message: " + message
-
       @updater = () =>
         _message = JSON.stringify(@message)
         @mqttClient.publish(@topic, _message)
         env.logger.debug "Updater => message sent, topic: " + @topic+ ", message: " + _message
-        @updateTimer = setTimeout(@updater,5000)
+        if @pirOn
+          @updateTimer = setTimeout(@updater,5000)
       @updater()
+
+      @mqttClient.on 'message', @mqttMessageHandler = (topic, message) =>
+        env.logger.debug "Message received, topic: " + topic + ", message: " + message
+        if @topic + "/pir" is topic
+          if Boolean message
+            @pirOn = true
+            @updater()
+          else
+            @pirOn = false
+
 
     destroy: () ->
       if @topic
