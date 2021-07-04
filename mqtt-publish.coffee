@@ -96,6 +96,9 @@ module.exports = (env) ->
           @message[_var.name] = Number value
 
       @updater = () =>
+        for variable in @config.variables
+          _variable = @plugin.framework.variableManager.getVariableValue(variable.id)
+          @message[variable.name] = _variable ? 0
         _message = JSON.stringify(@message)
         @mqttClient.publish(@topic, _message)
         env.logger.debug "Updater => message sent, topic: " + @topic+ ", message: " + _message
@@ -106,7 +109,7 @@ module.exports = (env) ->
       @mqttClient.on 'message', @mqttMessageHandler = (topic, message) =>
         env.logger.debug "Message received, topic: " + topic + ", message: " + message
         if topic.indexOf(@topic + "/pir") >= 0
-          if Boolean message
+          if (Boolean message)
             @pirOn = true
             @updater()
           else
