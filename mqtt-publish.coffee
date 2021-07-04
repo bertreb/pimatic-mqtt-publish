@@ -89,11 +89,13 @@ module.exports = (env) ->
       env.logger.debug "Message: " + JSON.stringify(@message,null,2)
 
 
+      ###
       @plugin.framework.on 'variableValueChanged', @variableChangedHandler = (variable, value) =>
         env.logger.debug "Variable changed: id: " + variable.name + ", value: " + value
         _var = _.find(@config.variables, (v)=> v.id is variable.name)
         if _var?
           @message[_var.name] = Number value
+      ###
 
       @updater = () =>
         for variable in @config.variables
